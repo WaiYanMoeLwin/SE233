@@ -18,8 +18,6 @@ import java.util.concurrent.FutureTask;
 public class CurrencyPane extends BorderPane {
     private Currency currency;
     public CurrencyPane(Currency currency) {
-
-
         this.setPadding(new Insets(0));
         this.setPrefSize(840, 300);
         this.setStyle("-fx-border-color: black");

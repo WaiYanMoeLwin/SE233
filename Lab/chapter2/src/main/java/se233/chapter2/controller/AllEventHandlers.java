@@ -2,12 +2,11 @@ package se233.chapter2.controller;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.TextInputDialog;
-import org.json.JSONException;
 import se233.chapter2.Launcher;
 import se233.chapter2.model.Currency;
 import se233.chapter2.model.CurrencyEntity;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.ExecutionException;
@@ -23,12 +22,7 @@ public class AllEventHandlers {
 
     public static void onAdd() {
         try {
-            TextInputDialog dialog = new TextInputDialog();
-            dialog.setTitle("Add Currency");
-            dialog.setContentText("Currency code:");
-            dialog.setHeaderText(null);
-            dialog.setGraphic(null);
-            Optional<String> code = dialog.showAndWait();
+            Optional<String> code = TextInputHelpers.inputCurrencyCode("Add Currency", "Currency code:");
             if (code.isPresent()) {
                 List<Currency> currencyList = Launcher.getCurrencyList();
                 Currency c = new Currency(code.get().toUpperCase());
@@ -48,7 +42,7 @@ public class AllEventHandlers {
             e.printStackTrace();
         } catch (ExecutionException e) {
             e.printStackTrace();
-        } catch (InvalidCurrencyCodeException e) {
+        } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.NONE, e.getMessage(), new ButtonType("Try again"));
             alert.setTitle("Invalid Currency Code");
             alert.showAndWait();
@@ -89,12 +83,7 @@ public class AllEventHandlers {
                 }
             }
             if (index != -1) {
-                TextInputDialog dialog = new TextInputDialog();
-                dialog.setTitle("Add Watch");
-                dialog.setContentText("Rate:");
-                dialog.setHeaderText(null);
-                dialog.setGraphic(null);
-                Optional<String> retrievedRate = dialog.showAndWait();
+                Optional<String> retrievedRate = TextInputHelpers.inputDouble("Add Watch","Rate:");
                 if (retrievedRate.isPresent()) {
                     double rate = Double.parseDouble(retrievedRate.get());
                     currencyList.get(index).setWatch(true);
@@ -109,6 +98,11 @@ public class AllEventHandlers {
             e.printStackTrace();
         } catch (ExecutionException e) {
             e.printStackTrace();
+        } catch (IOException e) {
+            Alert alert = new Alert(Alert.AlertType.NONE, e.getMessage(), new ButtonType("Try again"));
+            alert.setTitle("Invalid Input");
+            alert.showAndWait();
+            onWatch(code);
         }
     }
 
@@ -135,12 +129,7 @@ public class AllEventHandlers {
 
     public static void onChange() {
         try {
-            TextInputDialog dialog = new TextInputDialog();
-            dialog.setTitle("Change Base Currency");
-            dialog.setContentText("Base Currency code:");
-            dialog.setHeaderText(null);
-            dialog.setGraphic(null);
-            Optional<String> code = dialog.showAndWait();
+            Optional<String> code = TextInputHelpers.inputCurrencyCode("Change Base Currency", "Base Currency Code:");
             if (code.isPresent()) {
                 List<Currency> currencyList = Launcher.getCurrencyList();
                 String base = code.get().toUpperCase();
@@ -162,7 +151,7 @@ public class AllEventHandlers {
             e.printStackTrace();
         } catch (ExecutionException e) {
             e.printStackTrace();
-        } catch (InvalidCurrencyCodeException e) {
+        } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.NONE, e.getMessage(), new ButtonType("Try again"));
             alert.setTitle("Invalid Currency Code");
             alert.showAndWait();

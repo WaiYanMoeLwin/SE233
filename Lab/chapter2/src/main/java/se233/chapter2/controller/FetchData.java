@@ -1,6 +1,5 @@
 package se233.chapter2.controller;
 
-import javafx.scene.control.Alert;
 import org.apache.commons.io.IOUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -45,7 +44,7 @@ public class FetchData {
         } catch (IOException e) {
             System.err.println("Encounter an IO exception");
         } catch (JSONException e) {
-            throw new InvalidCurrencyCodeException(base, symbol);
+             throw new RuntimeException(String.format("The exchange rate for %s->%s is unavailable.", base, symbol));
         }
         return histList;
     }
