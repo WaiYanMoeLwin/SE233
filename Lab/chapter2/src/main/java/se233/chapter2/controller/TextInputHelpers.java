@@ -22,7 +22,7 @@ public class TextInputHelpers {
         TextInputDialog dialog = createTextInputDialog(title, content);
         UnaryOperator<TextFormatter.Change> filter = change -> {
             if (change.isContentChange()) {
-                change.setText(change.getText().toUpperCase());
+                //change.setText(change.getText().toUpperCase());
                 String newText = change.getControlNewText();
                 if (newText.matches("[a-zA-Z]*") && newText.length() <= 3) {
                     return change;
