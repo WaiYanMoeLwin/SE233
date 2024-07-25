@@ -4,13 +4,10 @@ import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.ProgressBar;
-import javafx.scene.control.ProgressIndicator;
+import javafx.scene.control.*;
 import javafx.scene.input.Dragboard;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.TransferMode;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Popup;
 import se233.chapter3.Launcher;
@@ -19,6 +16,8 @@ import se233.chapter3.model.PdfDocument;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.Array;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,15 +25,18 @@ import java.util.concurrent.ExecutorCompletionService;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
+import java.util.stream.Collectors;
 
 public class MainViewController {
     LinkedHashMap<String, List<FileFreq>> uniqueSets;
     @FXML
-    private ListView<String> inputListView;
+    private ListView inputListView;
     @FXML
     private ListView listView;
     @FXML
     private Button startButton;
+    @FXML
+    private MenuBar menuBar;
     @FXML
     public void initialize() {
         inputListView.setOnDragOver(event -> {
@@ -51,13 +53,27 @@ public class MainViewController {
             boolean success = false;
             if (db.hasFiles()) {
                 success = true;
-                String filePath;
+                String filePath, fileName;
                 int totalFiles = db.getFiles().size();
                 for (int i = 0; i < totalFiles; i++) {
                     File file = db.getFiles().get(i);
                     filePath = file.getAbsolutePath();
                     inputListView.getItems().add(filePath);
                 }
+                inputListView.setCellFactory(lv -> new ListCell<String>(){
+                    @Override
+                    protected void updateItem(String fname, boolean empty) {
+                        super.updateItem(fname,empty);
+                        if (empty) {
+                            setText(null);
+                        } else if (fname != null) {
+                            File f = new File(fname);
+                            setText(f.getName());
+                        } else {
+                            setText(null);
+                        }
+                    }
+                });
             }
             event.setDropCompleted(success);
             event.consume();
@@ -73,6 +89,7 @@ public class MainViewController {
                     Launcher.primaryStage.getScene().setRoot(box);
                     ExecutorService executor = Executors.newFixedThreadPool(4);
                     ExecutorCompletionService<Map<String, FileFreq>> completionService = new ExecutorCompletionService<>(executor);
+                    listView.getItems().clear();
                     List<String> inputListViewItems = inputListView.getItems();
                     int totalFiles = inputListViewItems.size();
                     Map<String, FileFreq>[] wordMap = new Map[totalFiles];
@@ -97,7 +114,9 @@ public class MainViewController {
                         WordCountReduceTask merger = new WordCountReduceTask(wordMap);
                         Future<LinkedHashMap<String, List<FileFreq>>> future = executor.submit(merger);
                         uniqueSets = future.get();
-                        listView.getItems().addAll(uniqueSets.keySet());
+                        listView.getItems().addAll(uniqueSets.entrySet().stream()
+                                .map(entry -> entry.getKey() + " (" + uniqueSets.get(entry.getKey()).stream().map(x -> x.getFreq()).toList().toString().replaceAll("[\\[\\]]", "") + ")")
+                                .collect(Collectors.toList()));
                     } catch (Exception e) {
                         e.printStackTrace();
                     } finally {
@@ -114,7 +133,7 @@ public class MainViewController {
             thread.start();
         });
         listView.setOnMouseClicked(event -> {
-            List<FileFreq> listOfLinks = uniqueSets.get(listView.getSelectionModel().getSelectedItem());
+            List<FileFreq> listOfLinks = uniqueSets.get(((String) (listView.getSelectionModel().getSelectedItem())).split(" ")[0]);
             ListView<FileFreq> popupListView = new ListView<>();
             LinkedHashMap<FileFreq, String> lookupTable = new LinkedHashMap<>();
             for (int i = 0; i < listOfLinks.size(); i++) {
@@ -128,6 +147,37 @@ public class MainViewController {
             });
             Popup popup = new Popup();
             popup.getContent().add(popupListView);
+            popup.getContent().get(0).setOnKeyPressed((code) -> {
+                if (code.getCode().equals(KeyCode.ESCAPE)) {
+                    popup.hide();
+                }
+            });
+            popup.show(Launcher.primaryStage);
+        });
+        menuBar.getMenus().getFirst().getItems().get(0).setOnAction(event -> {
+            System.exit(0);
+        });
+        menuBar.getMenus().get(1).getItems().get(0).setOnAction(event -> {
+            Popup popup = new Popup();
+            popup.getContent().add(new ListView(inputListView.getItems()));
+            ((ListView) popup.getContent().get(0)).setCellFactory(lv -> new ListCell<String>(){
+                @Override
+                protected void updateItem(String fname, boolean empty) {
+                    super.updateItem(fname,empty);
+                    if (empty) {
+                        setText(null);
+                    } else if (fname != null) {
+                        File f = new File(fname);
+                        setText(f.getName());
+                    } else {
+                        setText(null);
+                    }
+                }
+            });
+            popup.getContent().get(0).setOnMouseClicked(e -> {
+                inputListView.getItems().remove(((ListView) (popup.getContent().get(0))).getSelectionModel().getSelectedItem());
+                popup.hide();
+            });
             popup.show(Launcher.primaryStage);
         });
     }

@@ -27,12 +27,28 @@ public class WordCountReduceTask implements Callable<LinkedHashMap<String, List<
                                 (currentList, newItems) -> {
                                     currentList.addAll(newItems);
                                     return currentList;
+                                },
+                                currentList -> {
+                                    currentList.sort(new Comparator<FileFreq>() {
+                                        @Override
+                                        public int compare(FileFreq o1, FileFreq o2) {
+                                            return Integer.compare(o2.getFreq(), o1.getFreq());
+                                        }
+                                    });
+                                    return currentList;
                                 }
                         )
                 ))
                 .entrySet()
                 .stream()
-                .sorted(Map.Entry.comparingByKey())
+                .sorted(Map.Entry.comparingByValue(new Comparator<List<FileFreq>>() {
+                    @Override
+                    public int compare(List<FileFreq> o1, List<FileFreq> o2) {
+                        int sum1 = o1.stream().mapToInt(FileFreq::getFreq).sum();
+                        int sum2 = o2.stream().mapToInt(FileFreq::getFreq).sum();
+                        return sum2-sum1;
+                    }
+                }))
                 .collect(Collectors.toMap(e->e.getKey(), e->e.getValue(),
                         (v1, v2)->v1, ()->new LinkedHashMap<>()));
         return uniqueSets;
