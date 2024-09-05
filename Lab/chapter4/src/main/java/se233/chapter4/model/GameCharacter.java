@@ -10,19 +10,22 @@ import se233.chapter4.Launcher;
 import se233.chapter4.view.GameStage;
 
 public class GameCharacter extends Pane {
-    public static final int CHARACTER_WIDTH = 32;
-    public static final int CHARACTER_HEIGHT = 64;
+    public static final int DEFAULT_WIDTH = 32;
+    public static final int DEFAULT_HEIGHT = 64;
     private static final Logger logger = LogManager.getLogger(GameCharacter.class);
     private Image gameCharacterImage;
     private AnimatedSprite imageView;
     private int x, y;
     private KeyCode leftKey, rightKey, upKey;
+    int characterWidth = DEFAULT_WIDTH;
+    int characterHeight = DEFAULT_HEIGHT;
     int xVelocity = 0;
     int yVelocity = 0;
     int xAcceleration = 1;
     int yAcceleration = 1;
     int xMaxVelocity = 7;
     int yMaxVelocity = 17;
+    int turnRight = 1;
     boolean isMoveLeft = false;
     boolean isMoveRight = false;
     boolean isFalling = true;
@@ -35,8 +38,8 @@ public class GameCharacter extends Pane {
         this.setTranslateY(y);
         this.gameCharacterImage = new Image(Launcher.class.getResourceAsStream("assets/MarioSheet.png"));
         this.imageView = new AnimatedSprite(gameCharacterImage, 4, 4, 1, offsetX, offsetY, 16, 32);
-        imageView.setFitWidth(CHARACTER_WIDTH);
-        imageView.setFitHeight(CHARACTER_HEIGHT);
+        imageView.setFitWidth(DEFAULT_WIDTH);
+        imageView.setFitHeight(DEFAULT_HEIGHT);
         this.leftKey = leftKey;
         this.rightKey = rightKey;
         this.upKey = upKey;
@@ -44,18 +47,25 @@ public class GameCharacter extends Pane {
     }
 
     public void moveLeft() {
-        setScaleX(-1);
+        setScaleX(-turnRight);
         isMoveLeft = true;
         isMoveRight = false;
+        if (x <= 0) {
+            logger.debug("Collided with left wall");
+        }
     }
     public void moveRight() {
-        setScaleX(1);
+        setScaleX(turnRight);
         isMoveLeft = false;
         isMoveRight = true;
+        if (x + characterWidth >= GameStage.WIDTH) {
+            logger.debug("Collided with right wall");
+        }
     }
     public void stop() {
         isMoveLeft = false;
         isMoveRight = false;
+        xVelocity = 0;
     }
     public void moveX() {
         setTranslateX(x);
@@ -96,12 +106,13 @@ public class GameCharacter extends Pane {
     public void checkReachGameWall() {
         if (x <= 0) {
             x = 0;
-        } else if (x + CHARACTER_WIDTH >= GameStage.WIDTH) {
-            x = GameStage.WIDTH - CHARACTER_WIDTH;
+        } else if (x + characterWidth >= GameStage.WIDTH) {
+            x = GameStage.WIDTH - characterWidth;
         }
     }
     public void checkReachFloor() {
-        if (isFalling && y >= GameStage.GROUND - CHARACTER_HEIGHT){
+        if (isFalling && y >= GameStage.GROUND - characterHeight){
+            y = GameStage.GROUND - characterHeight;
             isFalling = false;
             canJump = true;
             yVelocity = 0;
@@ -133,4 +144,44 @@ public class GameCharacter extends Pane {
     public AnimatedSprite getImageView() {
         return imageView;
     }
+
+    public void setxAcceleration(int xAcceleration) {
+        this.xAcceleration = xAcceleration;
+    }
+
+    public void setyAcceleration(int yAcceleration) {
+        this.yAcceleration = yAcceleration;
+    }
+
+    public void setxMaxVelocity(int xMaxVelocity) {
+        this.xMaxVelocity = xMaxVelocity;
+    }
+
+    public void setyMaxVelocity(int yMaxVelocity) {
+        this.yMaxVelocity = yMaxVelocity;
+    }
+
+    // Methods for character customization
+    public void setGameCharacter(String imgpath, int columns, int rows, int offsetX, int offsetY, int width, int height, int resizedWidth, int resizedHeight, boolean turnSide) {
+        setGameCharacter(imgpath, offsetX, offsetY, offsetX, offsetY, width, height, true, resizedWidth, resizedHeight, turnSide);
+    }
+
+    public void setGameCharacter(String imgpath, int columns, int rows, int offsetX, int offsetY, int width, int height, boolean defaultCharacterSize, int resizedWidth, int resizedHeight, boolean turnSide) {
+        this.getChildren().remove(this.imageView);
+        this.gameCharacterImage = new Image(Launcher.class.getResourceAsStream(imgpath));
+        this.imageView = new AnimatedSprite(gameCharacterImage, columns*rows, columns, rows, offsetX, offsetY, width, height);
+        if (!defaultCharacterSize) {
+            characterWidth = resizedWidth;
+            characterHeight = resizedHeight;
+        }
+        if (turnSide) {
+            imageView.setScaleX(-1);
+            turnRight = -1;
+        }
+        imageView.setFitWidth(characterWidth);
+        imageView.setFitHeight(characterHeight);
+
+        this.getChildren().add(this.imageView);
+    }
+
 }

@@ -1,6 +1,5 @@
 package se233.chapter4.controller;
 
-import javafx.application.Platform;
 import se233.chapter4.model.GameCharacter;
 import se233.chapter4.view.GameStage;
 
@@ -43,7 +42,9 @@ public class GameLoop implements Runnable {
     public void run() {
         while (running) {
             long time = System.currentTimeMillis();
-            update(gameStage.getGameCharacter());
+            for (GameCharacter gameCharacter : gameStage.getGameCharacters()) {
+                update(gameCharacter);
+            }
             time = System.currentTimeMillis() - time;
             if (time < interval) {
                 try {

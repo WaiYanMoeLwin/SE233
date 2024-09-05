@@ -1,0 +1,61 @@
+[ INFO] 2024-09-02 Mon 09:16:26.687 [time 3159 ms] [Thread-3] GameCharacter [trace line:127] - x:30 y:236 vx:0 vy:0
+[ INFO] 2024-09-02 Mon 09:16:26.774 [time 3246 ms] [Thread-3] GameCharacter [trace line:127] - x:51 y:236 vx:6 vy:0
+[ INFO] 2024-09-02 Mon 09:16:26.874 [time 3346 ms] [Thread-3] GameCharacter [trace line:127] - x:93 y:236 vx:7 vy:0
+[ INFO] 2024-09-02 Mon 09:16:26.976 [time 3448 ms] [Thread-3] GameCharacter [trace line:127] - x:135 y:236 vx:7 vy:0
+[ INFO] 2024-09-02 Mon 09:16:27.076 [time 3548 ms] [Thread-3] GameCharacter [trace line:127] - x:177 y:236 vx:7 vy:0
+[ INFO] 2024-09-02 Mon 09:16:27.177 [time 3649 ms] [Thread-3] GameCharacter [trace line:127] - x:219 y:236 vx:7 vy:0
+[ INFO] 2024-09-02 Mon 09:16:27.280 [time 3752 ms] [Thread-3] GameCharacter [trace line:127] - x:261 y:236 vx:7 vy:0
+[ INFO] 2024-09-02 Mon 09:16:27.985 [time 4457 ms] [Thread-3] GameCharacter [trace line:127] - x:730 y:236 vx:0 vy:0
+[ INFO] 2024-09-02 Mon 09:16:28.085 [time 4557 ms] [Thread-3] GameCharacter [trace line:127] - x:670 y:236 vx:15 vy:0
+[ INFO] 2024-09-02 Mon 09:16:28.185 [time 4657 ms] [Thread-3] GameCharacter [trace line:127] - x:580 y:236 vx:15 vy:0
+[ INFO] 2024-09-02 Mon 09:16:28.286 [time 4758 ms] [Thread-3] GameCharacter [trace line:127] - x:490 y:236 vx:15 vy:0
+[ INFO] 2024-09-02 Mon 09:16:28.387 [time 4859 ms] [Thread-3] GameCharacter [trace line:127] - x:400 y:236 vx:15 vy:0
+[ INFO] 2024-09-02 Mon 09:16:28.488 [time 4960 ms] [Thread-3] GameCharacter [trace line:127] - x:310 y:236 vx:15 vy:0
+[ INFO] 2024-09-02 Mon 09:16:28.588 [time 5060 ms] [Thread-3] GameCharacter [trace line:127] - x:220 y:236 vx:15 vy:0
+[ INFO] 2024-09-02 Mon 09:16:28.690 [time 5162 ms] [Thread-3] GameCharacter [trace line:127] - x:130 y:236 vx:15 vy:0
+[ INFO] 2024-09-02 Mon 09:16:29.194 [time 5666 ms] [Thread-3] GameCharacter [trace line:127] - x:40 y:236 vx:0 vy:0
+[DEBUG] 2024-09-02 Mon 09:16:29.295 [time 5767 ms] [Thread-3] GameCharacter [moveLeft line:54] - Collided with left wall
+[ INFO] 2024-09-02 Mon 09:16:29.296 [time 5768 ms] [Thread-3] GameCharacter [trace line:127] - x:-15 y:236 vx:15 vy:0
+[DEBUG] 2024-09-02 Mon 09:16:29.396 [time 5868 ms] [Thread-3] GameCharacter [moveLeft line:54] - Collided with left wall
+[ INFO] 2024-09-02 Mon 09:16:29.398 [time 5870 ms] [Thread-3] GameCharacter [trace line:127] - x:-15 y:236 vx:15 vy:0
+[DEBUG] 2024-09-02 Mon 09:16:29.498 [time 5970 ms] [Thread-3] GameCharacter [moveLeft line:54] - Collided with left wall
+[ INFO] 2024-09-02 Mon 09:16:29.499 [time 5971 ms] [Thread-3] GameCharacter [trace line:127] - x:-15 y:236 vx:15 vy:0
+[DEBUG] 2024-09-02 Mon 09:16:29.598 [time 6070 ms] [Thread-3] GameCharacter [moveLeft line:54] - Collided with left wall
+[ INFO] 2024-09-02 Mon 09:16:29.599 [time 6071 ms] [Thread-3] GameCharacter [trace line:127] - x:-15 y:236 vx:15 vy:0
+[DEBUG] 2024-09-02 Mon 09:16:29.700 [time 6172 ms] [Thread-3] GameCharacter [moveLeft line:54] - Collided with left wall
+[ INFO] 2024-09-02 Mon 09:16:29.702 [time 6174 ms] [Thread-3] GameCharacter [trace line:127] - x:-15 y:236 vx:15 vy:0
+[ INFO] 2024-09-02 Mon 09:16:32.515 [time 8987 ms] [Thread-3] GameCharacter [trace line:127] - x:303 y:236 vx:0 vy:0
+[ INFO] 2024-09-02 Mon 09:16:32.617 [time 9089 ms] [Thread-3] GameCharacter [trace line:127] - x:324 y:236 vx:6 vy:0
+[ INFO] 2024-09-02 Mon 09:16:32.718 [time 9190 ms] [Thread-3] GameCharacter [trace line:127] - x:366 y:236 vx:7 vy:0
+[ INFO] 2024-09-02 Mon 09:16:32.819 [time 9291 ms] [Thread-3] GameCharacter [trace line:127] - x:408 y:236 vx:7 vy:0
+[ INFO] 2024-09-02 Mon 09:16:32.921 [time 9393 ms] [Thread-3] GameCharacter [trace line:127] - x:457 y:236 vx:7 vy:0
+[ INFO] 2024-09-02 Mon 09:16:33.022 [time 9494 ms] [Thread-3] GameCharacter [trace line:127] - x:499 y:236 vx:7 vy:0
+[ INFO] 2024-09-02 Mon 09:16:33.123 [time 9595 ms] [Thread-3] GameCharacter [trace line:127] - x:541 y:236 vx:7 vy:0
+[ INFO] 2024-09-02 Mon 09:16:33.224 [time 9696 ms] [Thread-3] GameCharacter [trace line:127] - x:583 y:236 vx:7 vy:0
+[ INFO] 2024-09-02 Mon 09:16:33.327 [time 9799 ms] [Thread-3] GameCharacter [trace line:127] - x:625 y:236 vx:7 vy:0
+[ INFO] 2024-09-02 Mon 09:16:33.427 [time 9899 ms] [Thread-3] GameCharacter [trace line:127] - x:667 y:236 vx:7 vy:0
+[ INFO] 2024-09-02 Mon 09:16:33.529 [time 10001 ms] [Thread-3] GameCharacter [trace line:127] - x:709 y:236 vx:7 vy:0
+[ INFO] 2024-09-02 Mon 09:16:33.630 [time 10102 ms] [Thread-3] GameCharacter [trace line:127] - x:751 y:236 vx:7 vy:0
+[DEBUG] 2024-09-02 Mon 09:16:33.731 [time 10203 ms] [Thread-3] GameCharacter [moveRight line:62] - Collided with right wall
+[ INFO] 2024-09-02 Mon 09:16:33.731 [time 10203 ms] [Thread-3] GameCharacter [trace line:127] - x:775 y:236 vx:7 vy:0
+[DEBUG] 2024-09-02 Mon 09:16:33.832 [time 10304 ms] [Thread-3] GameCharacter [moveRight line:62] - Collided with right wall
+[ INFO] 2024-09-02 Mon 09:16:33.832 [time 10304 ms] [Thread-3] GameCharacter [trace line:127] - x:775 y:236 vx:7 vy:0
+[DEBUG] 2024-09-02 Mon 09:16:34.336 [time 10808 ms] [Thread-3] GameCharacter [moveRight line:62] - Collided with right wall
+[ INFO] 2024-09-02 Mon 09:16:34.337 [time 10809 ms] [Thread-3] GameCharacter [trace line:127] - x:768 y:236 vx:0 vy:0
+[DEBUG] 2024-09-02 Mon 09:16:34.437 [time 10909 ms] [Thread-3] GameCharacter [moveRight line:62] - Collided with right wall
+[ INFO] 2024-09-02 Mon 09:16:34.439 [time 10911 ms] [Thread-3] GameCharacter [trace line:127] - x:774 y:236 vx:6 vy:0
+[ INFO] 2024-09-02 Mon 09:16:35.144 [time 11616 ms] [Thread-3] GameCharacter [trace line:127] - x:768 y:236 vx:0 vy:0
+[ INFO] 2024-09-02 Mon 09:16:35.246 [time 11718 ms] [Thread-3] GameCharacter [trace line:127] - x:747 y:236 vx:6 vy:0
+[ INFO] 2024-09-02 Mon 09:16:35.346 [time 11818 ms] [Thread-3] GameCharacter [trace line:127] - x:705 y:236 vx:7 vy:0
+[ INFO] 2024-09-02 Mon 09:16:35.450 [time 11922 ms] [Thread-3] GameCharacter [trace line:127] - x:663 y:236 vx:7 vy:0
+[ INFO] 2024-09-02 Mon 09:16:35.550 [time 12022 ms] [Thread-3] GameCharacter [trace line:127] - x:621 y:236 vx:7 vy:0
+[ INFO] 2024-09-02 Mon 09:16:35.752 [time 12224 ms] [Thread-3] GameCharacter [trace line:127] - x:579 y:236 vx:0 vy:0
+[DEBUG] 2024-09-02 Mon 09:16:37.667 [time 14139 ms] [Thread-3] GameCharacter [moveLeft line:54] - Collided with left wall
+[ INFO] 2024-09-02 Mon 09:16:37.668 [time 14140 ms] [Thread-3] GameCharacter [trace line:127] - x:0 y:236 vx:0 vy:0
+[DEBUG] 2024-09-02 Mon 09:16:37.769 [time 14241 ms] [Thread-3] GameCharacter [moveLeft line:54] - Collided with left wall
+[ INFO] 2024-09-02 Mon 09:16:37.769 [time 14241 ms] [Thread-3] GameCharacter [trace line:127] - x:-15 y:236 vx:15 vy:0
+[DEBUG] 2024-09-02 Mon 09:16:37.870 [time 14342 ms] [Thread-3] GameCharacter [moveLeft line:54] - Collided with left wall
+[ INFO] 2024-09-02 Mon 09:16:37.872 [time 14344 ms] [Thread-3] GameCharacter [trace line:127] - x:-15 y:236 vx:15 vy:0
+[DEBUG] 2024-09-02 Mon 09:16:38.872 [time 15344 ms] [Thread-3] GameCharacter [moveLeft line:54] - Collided with left wall
+[ INFO] 2024-09-02 Mon 09:16:38.874 [time 15346 ms] [Thread-3] GameCharacter [trace line:127] - x:0 y:236 vx:0 vy:0
+[ INFO] 2024-09-02 Mon 09:16:39.776 [time 16248 ms] [Thread-3] GameCharacter [trace line:127] - x:0 y:236 vx:0 vy:0

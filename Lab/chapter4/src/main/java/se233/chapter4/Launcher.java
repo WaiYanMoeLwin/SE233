@@ -19,8 +19,12 @@ public class Launcher extends Application {
         stage.setTitle("Mario");
         stage.setScene(scene);
         stage.show();
-        (new Thread(gameLoop)).start();
-        (new Thread(drawingLoop)).start();
+        Thread gameThread = new Thread(gameLoop);
+        Thread drawingThread = new Thread(drawingLoop);
+        gameThread.setDaemon(true);
+        drawingThread.setDaemon(true);
+        gameThread.start();
+        drawingThread.start();
     }
 
     public static void main(String[] args) {
