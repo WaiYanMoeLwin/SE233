@@ -9,6 +9,8 @@ import javafx.scene.input.DragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import se233.chapter1.controller.AllCustomHandler;
 import se233.chapter1.Launcher;
 import se233.chapter1.model.item.BasedEquipment;
@@ -17,6 +19,7 @@ import se233.chapter1.model.item.BasedEquipment;
 import java.util.ArrayList;
 
 public class InventoryPane extends ScrollPane {
+    private static final Logger logger = LogManager.getLogger(InventoryPane.class);
     ArrayList<BasedEquipment> equipmentArray;
     public InventoryPane() {}
     private Pane getDetailsPane() {
@@ -39,6 +42,14 @@ public class InventoryPane extends ScrollPane {
                     @Override
                     public void handle(DragEvent event) {
                         AllCustomHandler.onEquipDone(event);
+                        String weaponName = "None", armorName = "None";
+                        if (Launcher.getEquippedWeapon() != null) {
+                            weaponName = Launcher.getEquippedWeapon().getName();
+                        }
+                        if (Launcher.getEquippedArmor() != null) {
+                            armorName = Launcher.getEquippedArmor().getName();
+                        }
+                        logger.info("Weapon: " + weaponName + " Armor: " + armorName);
                     }
                 });
             }

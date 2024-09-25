@@ -58,18 +58,18 @@ public class AllCustomHandler {
         Dragboard db = event.getDragboard();
         ArrayList<BasedEquipment> allEquipments = Launcher.getAllEquipments();
         if (db.hasContent(BasedEquipment.DATA_FORMAT)) {
-            BasedEquipment retrievedEquibment = (BasedEquipment) db.getContent(BasedEquipment.DATA_FORMAT);
+            BasedEquipment retrievedEquipment = (BasedEquipment) db.getContent(BasedEquipment.DATA_FORMAT);
             BasedCharacter character = Launcher.getMainCharacter();
-            if (retrievedEquibment.getClass().getSimpleName().equals("Weapon")) {
+            if (retrievedEquipment.getClass().getSimpleName().equals("Weapon")) {
                 if (Launcher.getEquippedWeapon() != null)
                     allEquipments.add(Launcher.getEquippedWeapon());
-                Launcher.setEquippedWeapon((Weapon) retrievedEquibment);
-                character.equipWeapon((Weapon) retrievedEquibment);
+                Launcher.setEquippedWeapon((Weapon) retrievedEquipment);
+                character.equipWeapon((Weapon) retrievedEquipment);
             } else {
                 if (Launcher.getEquippedArmor() != null)
                     allEquipments.add(Launcher.getEquippedArmor());
-                Launcher.setEquippedArmor((Armor) retrievedEquibment);
-                character.equipArmor((Armor) retrievedEquibment);
+                Launcher.setEquippedArmor((Armor) retrievedEquipment);
+                character.equipArmor((Armor) retrievedEquipment);
             }
             Launcher.setMainCharacter(character);
             Launcher.setAllEquipments(allEquipments);
@@ -79,8 +79,8 @@ public class AllCustomHandler {
                 imgGroup.getChildren().remove(1);
                 Launcher.refreshPane();
             }
-            lbl.setText(retrievedEquibment.getClass().getSimpleName() + ": " + retrievedEquibment.getName());
-            imgView.setImage(new Image(Launcher.class.getResource(retrievedEquibment.getImagepath()).toString()));
+            lbl.setText(retrievedEquipment.getClass().getSimpleName() + ": " + retrievedEquipment.getName());
+            imgView.setImage(new Image(Launcher.class.getResource(retrievedEquipment.getImagepath()).toString()));
             imgGroup.getChildren().add(imgView);
             dragCompleted = true;
         }

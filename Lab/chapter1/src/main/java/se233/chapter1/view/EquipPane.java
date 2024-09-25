@@ -13,6 +13,8 @@ import javafx.scene.input.DragEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import se233.chapter1.Launcher;
 import se233.chapter1.controller.AllCustomHandler;
 import se233.chapter1.model.item.Armor;
